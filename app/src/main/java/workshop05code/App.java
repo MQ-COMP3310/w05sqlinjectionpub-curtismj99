@@ -57,11 +57,12 @@ public class App {
             int i = 1;
             while ((line = br.readLine()) != null) {
                 if (line.matches("[a-z]{4}")) {
-                    System.out.println(line);
+                    //System.out.println(line);
+                    logger.info("The word " + line + " is valid");
                     wordleDatabaseConnection.addValidWord(i, line);
                     i++;
                 } else {
-                    System.out.println("Ignored invalid word: '" + line + "'");
+                    logger.log(Level.SEVERE, "Word is invalid:", line);
                 }
             }
 
@@ -91,6 +92,7 @@ public class App {
                     guess = scanner.nextLine();
                 } else {
                     System.out.print("That was invalid input. Enter a 4 letter word for a guess or q to quit: " );
+                    logger.log(Level.WARNING, "Incorrect Input: ", guess);
                     guess = scanner.nextLine();
                 }
             }
